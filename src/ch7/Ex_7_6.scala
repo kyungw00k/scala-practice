@@ -18,6 +18,8 @@ object Ex_7_6 {
 
     map += ("num4" -> 5)
 
+    map -= ("num1") // make new map -> delete item -> returns new map
+
     println(map.values)
   }
 }
