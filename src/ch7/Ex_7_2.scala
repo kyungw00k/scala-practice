@@ -11,8 +11,8 @@ object Ex_7_2 {
       println(x)
     }
 
-//    val matrix = ofDim[Int](4, 5)
-//
-//    println(matrix(2)(3))
+    val matrix = Array.ofDim[Int](4, 5)
+
+    println(matrix(2)(3))
   }
 }
