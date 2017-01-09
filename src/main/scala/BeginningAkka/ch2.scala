@@ -1,4 +1,4 @@
-package BeginningAkka.ch2
+package BeginningAkka
 
 import akka.actor._
 
@@ -26,7 +26,7 @@ class Pong(ping: ActorRef) extends Actor {
 /**
   * Created by humphrey.park on 2017. 1. 9..
   */
-object ex_2_1_akka_ping_pong {
+object ch2 {
   def main(args: Array[String]): Unit = {
     val actorSystem = ActorSystem("TestSystem")
     val ping = actorSystem.actorOf(Props[Ping], "ping")
