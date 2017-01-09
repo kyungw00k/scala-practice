@@ -2,19 +2,24 @@ package BeginningAkka.ch2
 
 import akka.actor._
 
-class Ping extends UntypedActor {
+class Ping extends Actor {
   val pong = context.actorOf(Props(new Pong(self)), "pong")
 
-  override def onReceive(message: Any) = {
-    println(s"Ping received ${message}")
-    pong ! "ping"
+  def receive = {
+    case message:String => {
+      println(s"Ping received ${message}")
+      pong ! "ping"
+    }
   }
 }
 
-class Pong(ping: ActorRef) extends UntypedActor {
-  override def onReceive(message: Any) = {
-    println(s"Pong received ${message}")
-    sender ! "pong"
+class Pong(ping: ActorRef) extends Actor {
+  def receive = {
+    case message:String => {
+      println(s"Pong received ${message}")
+      sender ! "pong"
+      Thread.sleep(1000)
+    }
   }
 }
 
@@ -26,7 +31,7 @@ object ex_2_1_akka_ping_pong {
     val actorSystem = ActorSystem("TestSystem")
     val ping = actorSystem.actorOf(Props[Ping], "ping")
 
-    ping ! "start"
+    ping.tell("start", ActorRef.noSender)
 
   }
 }
